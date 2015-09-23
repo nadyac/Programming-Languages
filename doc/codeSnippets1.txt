@@ -1,0 +1,56 @@
+Code snippets:
+
+; print out each card in order by rank and suit
+(for[rank ranks suit suits] (println (str rank suit)))
+
+; generate a random int within a certain range
+(rand-int n)
+
+; get a specific element in the map
+(get-in deck n)
+
+; create a function that returns a random int that we can use
+(def n [(rand-int 52)])
+(get-in deck n) ; will give a random element in the deck
+
+; Create a variable (to store the current element before swapping)
+(def x <currentDeckElement>)
+(def y (get-in deck n)) ;; assign random deck element to var y
+
+; create a new deck where the two elements are swapped
+(def deck (into [] (for[s suits r ranks] [s r] (if (= [s r] x) (y))))
+
+(for[rank ranks suit suits] (get-in deck n))
+
+
+=======================================================================
+(require '[clojure.set :as set])
+
+; random generation of unique series of random numbers from 0 to n-1 
+
+(defn unique-rands [n]
+  (let [a-set (set (take n (repeatedly #(rand-int n))))]
+    (concat a-set (set/difference (set (take n (range)))
+                                  a-set))))
+
+user=> (unique-rands 20)
+(0 1 3 6 7 8 9 12 14 16 17 19 2 4 5 10 11 13 15 18)
+
+=========================================================================
+to put random ints in a list, do:
+(def x (unique-rands 51))
+
+==========================================================================
+
+deck = [[:hearts 1] [:spades 1] [:clubs 1] [:diamonds 1] [:hearts 2]]
+randoms = [3 1 0 2 4]
+
+shuffled-deck =[]
+shuffled-deck = [[deck[3]] [deck[ 1]] [deck[0]] [deck[2]] [deck[4]]]
+
+============
+Sample code:
+
+(def shuffled-deck []) ; create empty deck
+(def new-element (get-in deck (get randoms randoms-index)) (inc randoms-index))
+(conj shuffled-deck new-element)
