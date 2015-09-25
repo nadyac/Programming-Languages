@@ -1,6 +1,6 @@
 # project
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure project structure created with Leinengen. To view the source code for this small project, go to <b>project3/src/core.clj</b>
 
 ## Usage
 
